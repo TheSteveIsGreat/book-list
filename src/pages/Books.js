@@ -20,15 +20,14 @@ const Books = () => {
             <h5>Author: {b.author}</h5>
             <h5>Genre: {b.genre}</h5>
             <p>{b.description}</p>
-            <Link to={`/books/${u.id}`} state={u}>Show</Link>
+            <Link to={`/books/${b.id}`} state={b}>Show</Link> {' - '}
+            <button onClick={()=> data.deleteBook(b.id)}>Delete</button>
           </div>
         )
       })}
 
       <br/>
       <button onClick={data.getBooks}>Get Books</button>
-      <hr />
-      {/* {JSON.stringify(data)} */}
     </div>
   )
 }

@@ -7,14 +7,16 @@ import DataProvider from './providers/DataProvider';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Books from './pages/Books';
 import BookShow from './pages/BookShow';
+import BookForm from './pages/BookForm';
 
 ReactDOM.render(
   <DataProvider>
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<App />}>
-          <Route path='/books' element={<Books />} />
-          <Route path='/bookshow' element={<BookShow />} />
+          <Route path='/' element={<Books />} />
+          <Route path='/books/:id' element={<BookShow />} />
+          <Route path='/new_book' element={<BookForm />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -1,28 +1,30 @@
-import { useState } from "react"
-import { useLocation, useParams } from "react-router-dom"
+import { useContext, useState } from "react"
+import { useParams, useLocation } from "react-router-dom"
+import { DataContext } from "../providers/DataProvider"
 import BookForm from './BookForm'
+
 const BookShow = (props) => {
   // State hook to toggle form view on/off
   const [showForm, setShowForm] = useState (false)
+  const params = useParams()
+  const location = useLocation()
+  const data = useContext (DataContext)
 
   const renderBook = () => {
     return (
       <div className="border">
 
-        <img src={props.image} />
-        <h3>Single Book Page</h3>
-        <p>Title: {props.title}</p>
-        <p>Author: {props.author}</p>
-        <p>ID: {props.id}</p>
-        <br />
-        <button onClick={()=> props.deleteBook(props.id)}>Delete</button>
+        <img src={location.state.image} />
+        <h3>{location.state.title}</h3>
+        <p>Author: {location.state.author}</p>
+        <p>ID: {params.id}</p>
       </div>
     )
   }
 
   return (
     <div>
-      <button onClick={()=> SetShowForm(!showForm)}>{showForm ? 'Cancel' : 'Edit Book'}</button>
+      <button onClick={()=> setShowForm(!showForm)}>{showForm ? 'Cancel' : 'Edit Book'}</button>
       {showForm ? <BookForm {...props} setShowForm={setShowForm}/> : renderBook()}
     </div>
   )
